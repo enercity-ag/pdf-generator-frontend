@@ -5,7 +5,7 @@ import { FileDownloadOutlined, Height, WidthFull } from '@mui/icons-material';
 import ModalHead from './ModalHead';
 import Divider from './Divider';
 import { Template } from '@pdfme/common';
-import { saveTemplateByName } from '../libs/templateInterface';
+import { saveTemplateByName } from '../templateHooks';
 import { useForm } from 'react-hook-form';
 
 const modalBoxStyle = {
@@ -57,39 +57,41 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
         Save Template
       </button>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={modalBoxStyle}>
-          <div
-            style={{
-              maxWidth: '100vw',
-              maxHeight: '100vh',
-              overflow: 'auto',
-              padding: '1rem',
-              backgroundColor: 'var(--ifm-navbar-background-color)',
-            }}
-          >
-            <div>
-              <ModalHead title="Enter Template Name:" handleClose={handleClose} />
-            </div>
-            <Divider />
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="formInput">
-                <input
-                  style={{ width: '50%' }}
-                  placeholder="exampleName"
-                  type="name"
-                  {...register('name', {
-                    required: 'Required',
-                    pattern: /^[^.]+$/,
-                  })}
-                />
-                {errors.name && <p>Invalid Name (please check for special character and remove file extension)</p>}
+        <center>
+          <Box sx={modalBoxStyle}>
+            <div
+              style={{
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                overflow: 'auto',
+                padding: '1rem',
+                backgroundColor: 'var(--ifm-navbar-background-color)',
+              }}
+            >
+              <div>
+                <ModalHead title="Enter Template Name:" handleClose={handleClose} />
               </div>
-              <button style={{ width: '50%' }} type="submit">
-                Submit
-              </button>
-            </form>
-          </div>
-        </Box>
+              <Divider />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="formInput">
+                  <input
+                    style={{ width: '50%' }}
+                    placeholder="exampleName"
+                    type="name"
+                    {...register('name', {
+                      required: 'Required',
+                      pattern: /^[^.]+$/,
+                    })}
+                  />
+                  {errors.name && <p>Invalid Name (please check for special character and remove file extension)</p>}
+                </div>
+                <button style={{ width: '50%' }} type="submit">
+                  Speichern
+                </button>
+              </form>
+            </div>
+          </Box>
+        </center>
       </Modal>
     </div>
   );

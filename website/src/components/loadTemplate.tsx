@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { FileDownloadOutlined, LegendToggleRounded } from '@mui/icons-material';
 import ModalHead from './ModalHead';
 import Divider from './Divider';
-import { getTemplateList, getTemplateByName } from '../libs/templateInterface';
+import { getTemplateList, getTemplateByName } from '../templateHooks';
 import { Template } from '@pdfme/common';
 
 const modalBoxStyle = {

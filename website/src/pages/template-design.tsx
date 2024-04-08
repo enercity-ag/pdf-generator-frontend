@@ -10,6 +10,7 @@ import HowToUseDesignerButton from '../components/HowToUseDesignerButton';
 import DesignerCodeModal from '../components/DesignerCodeModal';
 import LoadTemplateButton from '../components/loadTemplate';
 import SaveTemplateButton from '../components/saveTemplate';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 const headerHeight = 60;
 const controllerHeight = 60;
