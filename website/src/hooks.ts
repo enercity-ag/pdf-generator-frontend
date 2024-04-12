@@ -9,10 +9,7 @@ const useForceUpdate = () => {
   return () => forceUpdate((s) => s + 1);
 };
 
-export const useForm = (props: {
-  formRef: React.MutableRefObject<HTMLDivElement>;
-  template: Template | null;
-}) => {
+export const useForm = (props: { formRef: React.MutableRefObject<HTMLDivElement>; template: Template | null }) => {
   const { formRef, template } = props;
   const form = useRef<Form | null>(null);
   const forceUpdate = useForceUpdate();
@@ -40,10 +37,7 @@ export const useForm = (props: {
   return form.current;
 };
 
-export const useViewer = (props: {
-  viewerRef: React.MutableRefObject<HTMLDivElement>;
-  template: Template | null;
-}) => {
+export const useViewer = (props: { viewerRef: React.MutableRefObject<HTMLDivElement>; template: Template | null }) => {
   const { viewerRef, template } = props;
   const viewer = useRef<Viewer | null>(null);
   const forceUpdate = useForceUpdate();

@@ -6,6 +6,7 @@ import ModalHead from './ModalHead';
 import Divider from './Divider';
 import { getTemplateList, getTemplateByName } from '../templateHooks';
 import { Template } from '@pdfme/common';
+import { useNameStore } from '../pages/template-design';
 
 const modalBoxStyle = {
   position: 'absolute',
@@ -42,6 +43,9 @@ const LoadTemplateButton = ({ changeTemplate }: LoadTemplateButtonProps) => {
   const loadTemplateByName = async (name: string) => {
     const loadedTemplate = (await getTemplateByName(name)) as Template;
     changeTemplate(loadedTemplate);
+    useNameStore.setState(() => ({
+      name: name,
+    }));
     handleClose();
   };
 

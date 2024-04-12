@@ -40,7 +40,8 @@
     "react-github-btn": "^1.2.1",
     "react-hook-form": "^7.51.1",
     "react-share": "^4.4.0",
-    "sass": "^1.47.0"
+    "sass": "^1.47.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@tsconfig/docusaurus": "^1.0.4",

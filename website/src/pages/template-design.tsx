@@ -10,7 +10,17 @@ import HowToUseDesignerButton from '../components/HowToUseDesignerButton';
 import DesignerCodeModal from '../components/DesignerCodeModal';
 import LoadTemplateButton from '../components/loadTemplate';
 import SaveTemplateButton from '../components/saveTemplate';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import { create } from 'zustand';
+
+interface Name {
+  name: string;
+  updateName: (newName: string) => void;
+}
+
+export const useNameStore = create<Name>((set) => ({
+  name: 'no saved template loaded',
+  updateName: (newName) => set({ name: newName }),
+}));
 
 const headerHeight = 60;
 const controllerHeight = 60;
@@ -21,6 +31,8 @@ const TemplateDesign = () => {
   const [template, setTemplate] = useState<Template>(getSampleTemplate());
   const [smallDisplay, setSmallDisplay] = useState(true);
   const [prevDesignerRef, setPrevDesignerRef] = useState<Designer | null>(null);
+
+  const [name, setName] = useState('');
 
   const modes = ['generator', 'designer', 'form', 'viewer'];
 

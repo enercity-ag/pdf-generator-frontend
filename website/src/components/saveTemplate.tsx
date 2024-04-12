@@ -7,6 +7,7 @@ import Divider from './Divider';
 import { Template } from '@pdfme/common';
 import { saveTemplateByName } from '../templateHooks';
 import { useForm } from 'react-hook-form';
+import { useNameStore } from '../pages/template-design';
 
 const modalBoxStyle = {
   position: 'absolute',
@@ -24,12 +25,9 @@ type saveTemplateButtonProps = {
   getTemplate: () => Template;
 };
 
-type Inputs = {
-  name: string;
-};
-
 const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -37,18 +35,33 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
 
   // - - - - - - - -
 
+  const onSubmit = (values) => {
+    const _name = String(values.name)
+      .toLowerCase()
+      .replace(' ', '_')
+      .replace('ä', 'ae')
+      .replace('ü', 'ue')
+      .replace('ö', 'oe')
+      .replace('ß', 'ss')
+      .replace('-', '_')
+      .replace('/', '_')
+      .replace('\\', '_')
+      .replace('.', '_')
+      .replace(',', '_');
+
+    saveTemplateByName(_name, getTemplate());
+    handleClose();
+  };
+
+  type Inputs = {
+    name: string;
+  };
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const onSubmit = (values) => {
-    const _name = String(values.name).toLowerCase().replace(' ', '_').replace('ä', 'ae').replace('ü', 'ue').replace('ö', 'oe').replace('ß', 'ss').replace('-', '_');
-
-    saveTemplateByName(_name, getTemplate());
-    handleClose();
-  };
 
   return (
     <div>
@@ -76,7 +89,7 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
                 <div className="formInput">
                   <input
                     style={{ width: '50%' }}
-                    placeholder="exampleName"
+                    placeholder={'loaded: ' + useNameStore.getState().name}
                     type="name"
                     {...register('name', {
                       required: 'Required',
