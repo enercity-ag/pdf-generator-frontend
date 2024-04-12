@@ -17,11 +17,9 @@ export default function HomepageHeader() {
           <div className="col col--6">
             <h1 className="hero__title">{siteConfig.title}: Free and Open source PDF generator!</h1>
             <p className="hero__subtitle">
-              A PDF generator library fully written in TypeScript coming with a React based UI
-              template editor*.
+              A PDF generator library fully written in TypeScript coming with a React based UI template editor*.
               <br />
-              Open source, developed by the community, and completely free to use under the MIT
-              license!
+              Open source, developed by the community, and completely free to use under the MIT license!
             </p>
             <strong>* The generator library and the UI editor can be used separately.</strong>
           </div>
@@ -38,11 +36,7 @@ export default function HomepageHeader() {
             </Link>
           </div>
           <div className="col col--3" style={{ marginTop: '1rem' }}>
-            <a
-              className="button button--lg button--info "
-              href="https://playground.pdfme.com"
-              target={'_blank'}
-            >
+            <a className="button button--lg button--info " href="https://playground.pdfme.com" target={'_blank'}>
               Playground
             </a>
           </div>

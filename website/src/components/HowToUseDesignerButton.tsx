@@ -25,11 +25,7 @@ const HowToUseDesignerButton = () => {
 
   return (
     <div>
-      <button
-        style={{ display: 'flex', alignItems: 'center' }}
-        className="button button--sm button--outline button--primary"
-        onClick={handleOpen}
-      >
+      <button style={{ display: 'flex', alignItems: 'center' }} className="button button--sm button--outline button--primary" onClick={handleOpen}>
         <HelpOutline fontSize="small" style={{ marginRight: '0.25rem' }} />
         How to use
       </button>
@@ -46,22 +42,13 @@ const HowToUseDesignerButton = () => {
           >
             <ModalHead title="How to use" handleClose={handleClose} />
             <div style={{ background: '#999' }}>
-              <img
-                loading="lazy"
-                src={'/img/designer.gif'}
-                style={{ width: 400, height: 384, display: 'block', margin: '0 auto' }}
-              />
+              <img loading="lazy" src={'/img/designer.gif'} style={{ width: 400, height: 384, display: 'block', margin: '0 auto' }} />
             </div>
-            <p>
-              The operation is like Google Slides, etc., so you can use common keyboard shortcuts.
-            </p>
+            <p>The operation is like Google Slides, etc., so you can use common keyboard shortcuts.</p>
 
             <p>
               Let's Click{' '}
-              <label
-                style={{ display: 'inline-flex', alignItems: 'center' }}
-                className="button button--sm button--outline button--success"
-              >
+              <label style={{ display: 'inline-flex', alignItems: 'center' }} className="button button--sm button--outline button--success">
                 <ChangeCircleOutlined fontSize="small" style={{ marginRight: '0.25rem' }} />
                 Change BasePDF
               </label>{' '}
@@ -121,9 +108,7 @@ const HowToUseDesignerButton = () => {
               <p>Templates are the core data structure of the pdfme library.</p>
 
               <Link to="/docs/getting-started#template">
-                <button className="button button--lg button--primary button--block">
-                  Learn more about the Template
-                </button>
+                <button className="button button--lg button--primary button--block">Learn more about the Template</button>
               </Link>
             </div>
           </div>
