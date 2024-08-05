@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { FileDownloadOutlined, SaveOutlined, Height, WidthFull } from '@mui/icons-material';
+import { SettingsOutlined } from '@mui/icons-material';
 import ModalHead from './ModalHead';
 import Divider from './Divider';
-import { Template } from '@pdfme/common';
-import { saveTemplateByName } from '../templateHooks';
 import { useForm } from 'react-hook-form';
-import { useNameStore } from '../pages/template-design';
+import { useAPIKeyStore } from '../pages/template-design';
 
 const modalBoxStyle = {
   position: 'absolute',
@@ -21,40 +19,30 @@ const modalBoxStyle = {
   boxShadow: 24,
 };
 
-type saveTemplateButtonProps = {
-  getTemplate: () => Template;
-};
-
-const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
+const SaveAPIKeyButton = () => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // - - - - - - - -
 
   const onSubmit = (values) => {
-    const _name = String(values.name)
-      .toLowerCase()
-      .replace(' ', '_')
-      .replace('ä', 'ae')
-      .replace('ü', 'ue')
-      .replace('ö', 'oe')
-      .replace('ß', 'ss')
-      .replace('-', '_')
-      .replace('/', '_')
-      .replace('\\', '_')
-      .replace('.', '_')
-      .replace(',', '_');
-
-    saveTemplateByName(_name, getTemplate());
+    useAPIKeyStore.setState(() => ({
+      key: values.key,
+    }));
     handleClose();
   };
 
+  // - - - - - - - -
+
   type Inputs = {
-    name: string;
+    key: string;
   };
 
   const {
@@ -63,11 +51,13 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  // - - - - - - - -
+
   return (
     <div>
-      <button style={{ marginRight: '1rem', display: 'flex', alignItems: 'center' }} onClick={handleOpen} className="button button--sm button--outline button--danger">
-        <SaveOutlined fontSize="small" style={{ marginRight: '0.25rem' }} />
-        Save Template
+      <button style={{ marginRight: '1rem', display: 'flex', alignItems: 'center' }} onClick={handleOpen} className="button button--sm button--outline button--success">
+        <SettingsOutlined fontSize="small" style={{ marginRight: '0.25rem' }} />
+        Set API Key
       </button>
       <Modal open={open} onClose={handleClose}>
         <center>
@@ -82,21 +72,20 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
               }}
             >
               <div>
-                <ModalHead title="Enter Template Name:" handleClose={handleClose} />
+                <ModalHead title="Enter API-Key:" handleClose={handleClose} />
               </div>
               <Divider />
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="formInput">
                   <input
                     style={{ width: '50%' }}
-                    placeholder={'loaded: ' + useNameStore.getState().name}
+                    placeholder={'loaded: ' + useAPIKeyStore.getState().key}
                     type="name"
-                    {...register('name', {
+                    {...register('key', {
                       required: 'Required',
                       pattern: /^[^.]+$/,
                     })}
                   />
-                  {errors.name && <p>Invalid Name (please check for special character and remove file extension)</p>}
                 </div>
                 <button style={{ width: '50%' }} type="submit">
                   Speichern
@@ -110,4 +99,4 @@ const SaveTemplateButton = ({ getTemplate }: saveTemplateButtonProps) => {
   );
 };
 
-export default SaveTemplateButton;
+export default SaveAPIKeyButton;

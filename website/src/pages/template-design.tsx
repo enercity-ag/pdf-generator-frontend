@@ -5,18 +5,29 @@ import { generate } from '@pdfme/generator';
 import { Designer } from '@pdfme/ui';
 import { text, image, barcodes } from '@pdfme/schemas';
 import Layout from '@theme/Layout';
-import { getSampleTemplate, cloneDeep, downloadJsonFile, readFile, getGeneratorSampleCode, getDesignerSampleCode, getFormSampleCode, getViewerSampleCode } from '../libs/helper';
+import { getSampleTemplate, cloneDeep, readFile, getGeneratorSampleCode, getDesignerSampleCode, getFormSampleCode, getViewerSampleCode } from '../libs/helper';
 import HowToUseDesignerButton from '../components/HowToUseDesignerButton';
 import DesignerCodeModal from '../components/DesignerCodeModal';
 import LoadTemplateButton from '../components/loadTemplate';
 import SaveTemplateButton from '../components/saveTemplate';
+import SaveAPIKeyButton from '../components/setAPIKey';
 import { create } from 'zustand';
 
+// for APIKEY
+interface Key {
+  key: string;
+  updateKey: (newKey: string) => void;
+}
+export const useAPIKeyStore = create<Key>((set) => ({
+  key: 'geheim',
+  updateKey: (newKey) => set({ key: newKey }),
+}));
+
+// for templatename
 interface Name {
   name: string;
   updateName: (newName: string) => void;
 }
-
 export const useNameStore = create<Name>((set) => ({
   name: 'no saved template loaded',
   updateName: (newName) => set({ name: newName }),
@@ -125,6 +136,7 @@ const TemplateDesign = () => {
         }}
       >
         <HowToUseDesignerButton />
+        <SaveAPIKeyButton />
 
         <div style={{ display: 'flex' }}>
           <label style={{ marginRight: '1rem', display: 'flex', alignItems: 'center' }} className="button button--sm button--outline button--success">
