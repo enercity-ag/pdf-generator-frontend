@@ -19,8 +19,8 @@ const config = {
   deploymentBranch: 'website',
   trailingSlash: false,
   customFields: {
-    BACKENDURL: process.env.BASEPATH,
-    BACKENDTEMPLATEURL: process.env.RESTPATH,
+    BACKENDURL: process.env.BACKENDURL,
+    BACKENDPATH: process.env.BACKENDPATH,
     X_API_KEY: process.env.X_API_KEY,
   },
   presets: [

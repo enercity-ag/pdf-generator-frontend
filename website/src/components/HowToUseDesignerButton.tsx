@@ -25,7 +25,7 @@ const HowToUseDesignerButton = () => {
 
   return (
     <div>
-      <button style={{ display: 'flex', alignItems: 'center' }} className="button button--sm button--outline button--primary" onClick={handleOpen}>
+      <button style={{ display: 'flex', alignItems: 'center' }} className="button button--sm button--outline button--success" onClick={handleOpen}>
         <HelpOutline fontSize="small" style={{ marginRight: '0.25rem' }} />
         How to use
       </button>

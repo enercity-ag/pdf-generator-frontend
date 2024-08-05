@@ -51,7 +51,7 @@ const LoadTemplateButton = ({ changeTemplate }: LoadTemplateButtonProps) => {
 
   return (
     <div>
-      <button style={{ marginRight: '1rem', display: 'flex', alignItems: 'center' }} onClick={handleOpen} className="button button--sm button--outline button--warning">
+      <button style={{ marginRight: '1rem', display: 'flex', alignItems: 'center' }} onClick={handleOpen} className="button button--sm button--outline button--success">
         <FileDownloadOutlined fontSize="small" style={{ marginRight: '0.25rem' }} />
         Load Template
       </button>
